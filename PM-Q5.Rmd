@@ -1,0 +1,111 @@
+---
+title: "Author Attribution"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=TRUE}
+library(stringr)
+library(dplyr)
+library(tm) 
+library(tidyverse)
+library(slam)
+library(proxy)
+
+list_of_files<-list.files(path = "/Users/trishaschutter/Desktop/MSBA/SUMMER/Predictive Modeling/Second Half/STA380-master/data/ReutersC50/", pattern= ".txt",recursive = TRUE)
+train<-NULL
+
+for(i in 1:length(list_of_files)){
+  cur.file<-read.delim(header=FALSE,stringsAsFactors = FALSE,str_c("/Users/trishaschutter/Desktop/MSBA/SUMMER/Predictive Modeling/Second Half/STA380-master/data/ReutersC50/",list_of_files[i]))
+  train<-c(train,cur.file)
+}
+train=train %>% unlist()
+
+## once you have documents in a vector, you 
+## create a text mining 'corpus' with: 
+documents_raw = Corpus(VectorSource(train))
+
+## Some pre-processing/tokenization steps.
+## tm_map just maps some function to every document in the corpus
+my_documents = documents_raw %>%
+  tm_map(content_transformer(tolower))  %>%             # make everything lowercase
+  tm_map(content_transformer(removeNumbers)) %>%        # remove numbers
+  tm_map(content_transformer(removePunctuation)) %>%    # remove punctuation
+  tm_map(content_transformer(stripWhitespace))          # remove excess white-space
+
+## Remove stopwords.  Always be careful with this: one person's trash is another one's treasure.
+# 2 example built-in sets of stop words
+stopwords("en")
+stopwords("SMART")
+?stopwords
+# let's just use the "basic English" stop words
+my_documents = tm_map(my_documents, content_transformer(removeWords), stopwords("en"))
+
+## create a doc-term-matrix from the corpus
+DTM_train = DocumentTermMatrix(my_documents)
+DTM_train # some basic summary statistics
+
+# Get test data
+test<-NULL
+
+for(i in 1:length(list_of_files)){
+  test.file<-read.delim(header=FALSE,stringsAsFactors = FALSE,str_c("/Users/trishaschutter/Desktop/MSBA/SUMMER/Predictive Modeling/Second Half/STA380-master/data/ReutersC50/",list_of_files[i]))
+  train<-c(test,test.file)
+}
+test=test %>% unlist()
+
+## once you have documents in a vector, you 
+## create a text mining 'corpus' with: 
+test_raw = Corpus(VectorSource(test))
+
+## Some pre-processing/tokenization steps.
+## tm_map just maps some function to every document in the corpus
+my_test_docs = test_raw %>%
+  tm_map(content_transformer(tolower))  %>%             # make everything lowercase
+  tm_map(content_transformer(removeNumbers)) %>%        # remove numbers
+  tm_map(content_transformer(removePunctuation)) %>%    # remove punctuation
+  tm_map(content_transformer(stripWhitespace))          # remove excess white-space
+
+## Remove stopwords.  Always be careful with this: one person's trash is another one's treasure.
+# 2 example built-in sets of stop words
+stopwords("en")
+stopwords("SMART")
+?stopwords
+# let's just use the "basic English" stop words
+my_test_docs = tm_map(my_test_docs, content_transformer(removeWords), stopwords("en"))
+
+## create a doc-term-matrix from the corpus
+DTM_test = DocumentTermMatrix(my_test_docs)
+DTM_test 
+
+
+#############################################################
+
+inspect(DTM_train[1:10,1:20])
+
+findFreqTerms(DTM_train, 50)
+
+findAssocs(DTM_train, "genetic", .5)
+
+DTM_train = removeSparseTerms(DTM_train, 0.95)
+DTM_train
+
+tfidf_train = weightTfIdf(DTM_train)
+
+#####################################################
+
+####
+# Compare /cluster documents
+####
+i = 15
+j = 16
+sum(tfidf_train[i,] * (tfidf_train[j,]))/(sqrt(sum(tfidf_train[i,]^2)) * sqrt(sum(tfidf_train[j,]^2)))
+# the proxy library has a built-in function to calculate cosine distance
+# define the cosine distance matrix for our DTM using this function
+cosine_dist_mat = proxy::dist(as.matrix(tfidf_train), method='cosine')
+######### error: negative length vectors are not allowed
+```
+We attempted this problem by loading in the sets of test and training data. For the pre-processing, we removed all white spaces, made everything lowercase, removed all numbers, and removed punctuation. When it came time to try the tests, we received the error "negative length vectors are not allowed". After some Googling, we saw that this could be the result of our computer not having enough memory to run the code. The suggestions were to run smaller samples or use a machine with more memory. As these are not options for us, we had no choice but to forgo that method.
+
+If we were able to run this, we would have received the TF-IDF score for the training data. We would have repeated this process for the test data and compared the test to train to ultimately predict what author wrote the piece of test data.
