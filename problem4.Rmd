@@ -1,8 +1,6 @@
 ---
 title: "q4"
-output:
-  html_document:
-    df_print: paged
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -51,12 +49,10 @@ sigma = attr(X,"scaled:scale")
 ## Choosing a value for k
 In order to create the model, a number had to be chosen for the k. The Gap statistic method was first used for this purpose. The plot from the gap statistic method is shown:
 
-```{r gap, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8,echo = FALSE, message = FALSE, warning = FALSE}
-library(cluster)
-mark_gap = clusGap(social, FUN = kmeans, nstart = 50, K.max = 20, B = 100)
-plot(mark_gap)
-
-```
+#{r gap, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8,echo = FALSE, message = FALSE, warning = #FALSE}
+#library(cluster)
+#mark_gap = clusGap(social, FUN = kmeans, nstart = 50, K.max = 20, B = 100)
+#plot(mark_gap)
 
 As can be seen, no clear dip could be observed. So, it was decided after several trials that a k value of 7 would be chosen. This was based on formation of discernible clusters for this specific value of k.
 
