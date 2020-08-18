@@ -18,7 +18,7 @@ library(scales)
 options(scipen = 999999999) ### turn off scientific notation like 1e-09
 
 ```
-#Problem 1
+# Problem 1
 
 ```{r, echo=FALSE}
 greenbuilding = read.csv('data/greenbuildings.csv')
@@ -133,7 +133,7 @@ ggplot(data = merged) +
 
 In conclusion, our analysis shows that green certificates do not generate rent premium. The higher rent charged by green buildings are likely the result of other factors such as newer buildings and better amenities. Thus, from a purely economic perspective, it is not advisable to get green certified. 
 
-#Problem 2
+# Problem 2
 The following is an analysis of Austin Bergstrom International Airport. The data
 has been grouped in a way that shows optimal times for flying in regards to 
 month, day of week, time of day, and carrier in order to avoid arrival and/or
@@ -229,7 +229,7 @@ ggplot(data = ABIA) +
 ```
 In preparation for your next flight, you might want to know what a certain day looks like on the particular month you need to travel. These two plots will point you in the right direction, where you will first be able to look at the month that you are flying and then find the smallest line, indicating that is the day with the fewest delays during that month.
 
-#Problem 3
+# Problem 3
 ```{r, echo=TRUE}
 library(mosaic)
 library(quantmod)
@@ -576,7 +576,7 @@ From the above analysis it is clear that the brand NutrientH2O appeals to certai
 -online gamers: once again, most likely a younger portion of the population.
 -individuals interested in technology.
 
-#Problem 5
+# Problem 5
 
 ```{r q5, include=TRUE}
 # library(stringr)
@@ -683,7 +683,7 @@ We attempted this problem by loading in the sets of test and training data. For 
 
 If we were able to run this, we would have received the TF-IDF score for the training data. We would have repeated this process for the test data and compared the test to train to ultimately predict what author wrote the piece of test data.
 
-#Problem 6
+# Problem 6
 ```{r, echo = TRUE}
 library(tidyverse)
 library(arules)  
