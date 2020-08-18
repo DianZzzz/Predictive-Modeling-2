@@ -2,9 +2,7 @@
 title: "HW2"
 author: "Shruti Kapur, Immanuel Ponminissery, Patricia Schutter, Dian Zhao"
 date: "08/17/2020"
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +21,7 @@ options(scipen = 999999999) ### turn off scientific notation like 1e-09
 #Problem 1
 
 ```{r, echo=FALSE}
-greenbuilding = read.csv('STA380-master/STA380-master/data/greenbuildings.csv')
+greenbuilding = read.csv('data/greenbuildings.csv')
 
 attach(greenbuilding)
 
@@ -146,7 +144,7 @@ library(mosaic)
 library(tidyverse)
 library(ggplot2)
 
-data1 <-"STA380-master/STA380-master/data/ABIA.csv"
+data1 <-"data/ABIA.csv"
 ABIA = read.csv(data1)
 #ABIA = read.csv('ABIA.csv')
 head(ABIA)
@@ -464,8 +462,226 @@ This is an aggressive portolio with multiple ETF's across bonds, large caps, mid
 
 #Problem 4
 
+The goal of this report is to help NutrientH2O find market segments that may be of interest. For the purposes of this goal, k-means clustering has been used and several different predictors have been plotted to try and understand the market segments present with NutrientH2O's online audience.
+
+```{r loadingdata, echo = FALSE, message=FALSE}
+rm(list = ls())
+library(ggplot2)
+library(LICORS)
+library(foreach)
+library(mosaic)
+library(foreach)
+set.seed(52)
+social = read.csv('data/social_marketing.csv', header=TRUE)
+rownames(social) <- social$X
+social = social[,-1]
+```
+
+## Cleaning data
+It is important to note that the dataset received from Amazon's Mechanical Turk Service has to be cleaned in order to better understand the market. In order to do this any row which had adult or spam content was deleted from the dataset. The next step taken was to filter out rows with high density of uncategorized and chatter content. Upon closer inspection, it was recognized that several rows had high counts in the chatter column. So, it was decided that any row that had a chatter count of more than 2 would be deleted from the dataset along with rows that had content in the uncategorized column.
+
+```{r cleaning, echo =FALSE, message = FALSE}
+social = social[!(social$chatter>=2 | social$adult>=1 | social$spam>=1 | social$uncategorized>=1),]
+```
+
+## Scaling data
+After cleaning the dataset, steps were taken to scale the dataset.In the process of scaling, columns for adult, spam, uncategorized and chatter were deleted. The means and the standard deviations of the dataset were saved so that they could be reverted back to understandable data points once clusters were made.
+
+```{r scaling, echo = FALSE, message = FALSE}
+X = social
+X = X[,-5]
+X = X[,-(34:35)]
+X = X[,-1]
+X_for_elbow = X
+X = scale(X, center=TRUE, scale=TRUE)
+mu = attr(X,"scaled:center")
+sigma = attr(X,"scaled:scale")
+
+```
+
+## Choosing a value for k
+In order to create the model, a number had to be chosen for the k. The Gap statistic method was first used for this purpose. The plot from the gap statistic method is shown:
+
+```{r gap, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8,echo = FALSE, message = FALSE, warning = FALSE}
+#library(cluster)
+#mark_gap = clusGap(social, FUN = kmeans, nstart = 50, K.max = 20, B = 100)
+#plot(mark_gap)
+```
+
+As can be seen, no clear dip could be observed. So, it was decided after several trials that a k value of 7 would be chosen. This was based on formation of discernible clusters for this specific value of k.
+
+## Identifying clusters
+At first, a combination of different variables were plotted. One of the first pairs of covariates that showed an interesting cluster was beauty and fashion.
+
+```{r beatyfasion, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+clust1 = kmeanspp(X, 7, nstart=25)
+qplot(fashion, beauty, data=social, color=factor(clust1$cluster))
+
+```
+
+The concentration of members of the same cluster for higher number of tweets in fashion and beauty suggests that it is a pretty clear cluster which can considered as an exploitable market.This cluster can be thought as consisting of young individuals who are interested in appearance and fashion trends.
+
+Driven by this finding of clusters formed by individuals who were interested in fashion and beauty, another plot was created with the covariates of travel and personal_fitness.
+
+```{r travelfit, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(travel, personal_fitness, data=social, color=factor(clust1$cluster))
+
+```
+
+In the plot above, two other clusters emerge: one of people who are very interested in personal fitness and another group for individuals who are very interested in travel. In order to see if the cluster of people interested in personal fitness were in someway also interested in playing sports, another plot was created.
+
+```{r fitsport, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(sports_playing, personal_fitness, data=social, color=factor(clust1$cluster))
+
+```
+The above plot suggests that the hypothesis of the existence of a market segment that is interested in both playing sports and fitness is invalid. However, in order to further investigate if the brand's audience included active college students, a plot was created with the variables college_uni and sports_playing. 
+
+```{r sportuni, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(college_uni, sports_playing, data=social, color=factor(clust1$cluster))
+
+```
+The existence of two distinct clusters is clear in the plot above. One with individuals who attend college and have an active lifestyle and another with neither one of those qualities.Since the demographic that goes to college and plays sports consists of young adults, further investigation was conducted into the online gaming community since its membership is dominated to a certain extent by young adults.
+
+```{r gametrave, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(travel, online_gaming, data=social, color=factor(clust1$cluster))
+
+```
+From the above plot, it is clear that there is cluster of individuals who are heavily involved in online gaming and are interested in NutrientH2O.In an effort to see if there exists clusters among tech savvy individuals, the covariates online_gaming and computers were plotted.
+
+```{r componli, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(online_gaming, computers, data=social, color=factor(clust1$cluster))
+
+```
+
+This shows that there are actually two distinct clusters: a group for online gamers and others who are solely interested in computers. So this could be interpreted as clusters for younger individuals and another for possibly older individuals just interested in computers.
+
+In an effort to understand if individuals who were interested in healthy eating were a target audience, a plot was made using personal_fitness and health_nutrition. As can be seen below, two distinct clusetrs form: one whose membership consists of individuals interested in healthy eating and personal fitness and another who are not interested in either.
+
+
+```{r healthfit, echo = FALSE,fig.align='center', fig.height = 5, fig.width = 8}
+qplot(health_nutrition, personal_fitness, data=social, color=factor(clust1$cluster))
+```
+
+
+It is worth noting that other covariates such as politics, news, family etc. were plotted but informative clusters were not found. 
+
+## Conclusion
+
+From the above analysis it is clear that the brand NutrientH2O appeals to certain groups of the general populace, namely:
+
+-individuals interested in beauty and fashion: possibly the younger side of the population who follow influencers.
+-active individuals attending college: a demographic primarily between the ages of 18 and 22.
+-fitness obsessed individuals.
+-individuals interested in travel.
+-online gamers: once again, most likely a younger portion of the population.
+-individuals interested in technology.
+
 #Problem 5
 
+```{r q5, include=TRUE}
+# library(stringr)
+# library(dplyr)
+# library(tm) 
+# library(tidyverse)
+# library(slam)
+# library(proxy)
+# 
+# list_of_files<-list.files(path = "data/ReutersC50/", pattern= ".txt",recursive = TRUE)
+# train<-NULL
+# 
+# for(i in 1:length(list_of_files)){
+#   cur.file<-read.delim(header=FALSE,stringsAsFactors = FALSE,str_c("data/ReutersC50/",list_of_files[i]))
+#   train<-c(train,cur.file)
+# }
+# train=train %>% unlist()
+# 
+# ## once you have documents in a vector, you 
+# ## create a text mining 'corpus' with: 
+# documents_raw = Corpus(VectorSource(train))
+# 
+# ## Some pre-processing/tokenization steps.
+# ## tm_map just maps some function to every document in the corpus
+# my_documents = documents_raw %>%
+#   tm_map(content_transformer(tolower))  %>%             # make everything lowercase
+#   tm_map(content_transformer(removeNumbers)) %>%        # remove numbers
+#   tm_map(content_transformer(removePunctuation)) %>%    # remove punctuation
+#   tm_map(content_transformer(stripWhitespace))          # remove excess white-space
+# 
+# ## Remove stopwords.  Always be careful with this: one person's trash is another one's treasure.
+# # 2 example built-in sets of stop words
+# stopwords("en")
+# stopwords("SMART")
+# ?stopwords
+# # let's just use the "basic English" stop words
+# my_documents = tm_map(my_documents, content_transformer(removeWords), stopwords("en"))
+# 
+# ## create a doc-term-matrix from the corpus
+# DTM_train = DocumentTermMatrix(my_documents)
+# DTM_train # some basic summary statistics
+# 
+# # Get test data
+# test<-NULL
+# 
+# for(i in 1:length(list_of_files)){
+#   test.file<-read.delim(header=FALSE,stringsAsFactors = FALSE,str_c("data/ReutersC50/",list_of_files[i]))
+#   train<-c(test,test.file)
+# }
+# test=test %>% unlist()
+# 
+# ## once you have documents in a vector, you 
+# ## create a text mining 'corpus' with: 
+# test_raw = Corpus(VectorSource(test))
+# 
+# ## Some pre-processing/tokenization steps.
+# ## tm_map just maps some function to every document in the corpus
+# my_test_docs = test_raw %>%
+#   tm_map(content_transformer(tolower))  %>%             # make everything lowercase
+#   tm_map(content_transformer(removeNumbers)) %>%        # remove numbers
+#   tm_map(content_transformer(removePunctuation)) %>%    # remove punctuation
+#   tm_map(content_transformer(stripWhitespace))          # remove excess white-space
+# 
+# ## Remove stopwords.  Always be careful with this: one person's trash is another one's treasure.
+# # 2 example built-in sets of stop words
+# stopwords("en")
+# stopwords("SMART")
+# ?stopwords
+# # let's just use the "basic English" stop words
+# my_test_docs = tm_map(my_test_docs, content_transformer(removeWords), stopwords("en"))
+# 
+# ## create a doc-term-matrix from the corpus
+# DTM_test = DocumentTermMatrix(my_test_docs)
+# DTM_test 
+# 
+# 
+# #############################################################
+# 
+# inspect(DTM_train[1:10,1:20])
+# 
+# findFreqTerms(DTM_train, 50)
+# 
+# findAssocs(DTM_train, "genetic", .5)
+# 
+# DTM_train = removeSparseTerms(DTM_train, 0.95)
+# DTM_train
+# 
+# tfidf_train = weightTfIdf(DTM_train)
+# 
+# #####################################################
+# 
+# ####
+# # Compare /cluster documents
+# ####
+# i = 15
+# j = 16
+# sum(tfidf_train[i,] * (tfidf_train[j,]))/(sqrt(sum(tfidf_train[i,]^2)) * sqrt(sum(tfidf_train[j,]^2)))
+# # the proxy library has a built-in function to calculate cosine distance
+# # define the cosine distance matrix for our DTM using this function
+# cosine_dist_mat = proxy::dist(as.matrix(tfidf_train), method='cosine')
+# ######### error: negative length vectors are not allowed
+```
+We attempted this problem by loading in the sets of test and training data. For the pre-processing, we removed all white spaces, made everything lowercase, removed all numbers, and removed punctuation. When it came time to try the tests, we received the error "negative length vectors are not allowed". After some Googling, we saw that this could be the result of our computer not having enough memory to run the code. The suggestions were to run smaller samples or use a machine with more memory. As these are not options for us, we had no choice but to forgo that method.
+
+If we were able to run this, we would have received the TF-IDF score for the training data. We would have repeated this process for the test data and compared the test to train to ultimately predict what author wrote the piece of test data.
 
 #Problem 6
 ```{r, echo = TRUE}
@@ -474,7 +690,7 @@ library(arules)
 library(arulesViz)
 
 # Reading in as a sparse matrix
-grocery_list <- read.transactions("STA380-master/STA380-master/data/groceries.txt", sep=',')
+grocery_list <- read.transactions("data/groceries.txt", sep=',')
 summary(grocery_list)
 
 # Checking frequencies of first ten items. This will give us an idea on the 'support'
@@ -508,13 +724,13 @@ Here we have created a graph to see the top rules with the highest 'lifts', whic
 ```{r}
 
 # Visualizing on the value of support and lift, based on confidence
-plotly_arules(rules, measure = c("support", "lift"), shading = "confidence")
+plotly_arules(grocery_rules, measure = c("support", "lift"), shading = "confidence")
 
 ```
 The plot gives an overview of the distribution of support and lift in the grocery rule set. There are a few high-lift rules, located close to the minimum support threshold. This means that there are some items which might not occur frequently but form strong rules with some other products, according to the apriori principle.
 
 ```{r, echo=TRUE}
-plotly_arules(rules, method = "two-key plot")
+plotly_arules(grocery_rules, method = "two-key plot")
 
 ```
 Here we see a plot between support and confidence. We find a lot of points with high confidence and support in the bottom left corner, extending upwards on both the x and the y axes. This means that there are items which occur frequently in the grocery list and they also form strong rules with other group of items as per the apriori principle.
@@ -528,49 +744,49 @@ itemFrequencyPlot(grocery_list, topN = 10)
 
 # inspecting rules for 'whole milk'
 ham_rules <- subset(grocery_rules, items %in% 'ham')
-inspect(ham_rules)[1:10]
+inspect(ham_rules)[1:10,]
 
 # inspecting rules for 'other vegetables'
 veg_rules <- subset(grocery_rules, items %in% 'other vegetables')
-inspect(veg_rules)[1:10]
+inspect(veg_rules)[1:10,]
 
 # inspecting rules for 'rolls/buns'
 bun_rules <- subset(grocery_rules, items %in% 'rolls/buns')
-inspect(bun_rules)[1:10]
+inspect(bun_rules)[1:10,]
 
 # inspecting rules for 'soda'
 soda_rules <- subset(grocery_rules, items %in% 'soda')
-inspect(soda_rules)[1:10]
+inspect(soda_rules)[1:10,]
 
 # inspecting rules for 'yogurt'
 yogurt_rules <- subset(grocery_rules, items %in% 'yogurt')
-inspect(yogurt_rules)[1:10]
+inspect(yogurt_rules)[1:10,]
 
 # inspecting rules for 'bottled water'
 water_rules <- subset(grocery_rules, items %in% 'bottled water')
-inspect(water_rules)[1:10]
+inspect(water_rules)[1:10,]
 
 # inspecting rules for 'root vegetables'
 root_rules <- subset(grocery_rules, items %in% 'root vegetables')
-inspect(root_rules)[1:10]
+inspect(root_rules)[1:10,]
 
 # inspecting rules for 'tropical fruit'
 fruit_rules <- subset(grocery_rules, items %in% 'tropical fruit')
-inspect(fruit_rules)[1:10]
+inspect(fruit_rules)[1:10,]
 
 # inspecting rules for 'shopping bags'
 bag_rules <- subset(grocery_rules, items %in% 'shopping bags')
-inspect(bag_rules)[1:10]
+inspect(bag_rules)[1:10,]
 
 # inspecting rules for 'sausage'
 sausage_rules <- subset(grocery_rules, items %in% 'sausage')
-inspect(sausage_rules)[1:10]
+inspect(sausage_rules)[1:10,]
 
 ```
 
 Going through this list, we find some interesting rules such as:
-1.Customers who buy speciality cheese are 3 times more likely to buy other vegetables.
-2.Customers who buy herbs and other vegetables are 5 times more likely to buy root vegetables. This seems counter-intuitive since these customrs have already bought vegetables! Interesting insight.
+1.Customers who buy specialty cheese are 3 times more likely to buy other vegetables.
+2.Customers who buy herbs and other vegetables are 5 times more likely to buy root vegetables. This seems counter-intuitive since these customers have already bought vegetables! Interesting insight.
 3.Customers who bought baking power and whole milk are 3 times more likely to buy other vegetables. This insight can dictate where to place the vegetables relative to the baking and the dairy section in a supermart!
 4.Customers who buy hard cheese and other veg are 4 times more likely to pick root vegetables, building on our hunch of placing the dairy section right next to the vegetable section.
 5.Customers who pick butter, other vegetables and yoghurt are 5 times more likely to pick tropical fruits (not citrus fruits). This insight could be useful in placing fruits in a supermart and increasing sales on a perishable item!
