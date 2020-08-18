@@ -533,33 +533,33 @@ for(ticker in mystocks) {
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/XLE?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-    
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/XLE?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/XLE?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/XLI?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/XLI?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/XLP?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/XLP?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-    
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/XLP?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
 ``` r
 # Combine all the returns in a matrix
@@ -589,14 +589,14 @@ holdings
 ```
 
     ##            ClCl.XLEa ClCl.XLIa ClCl.XLPa
-    ## 2017-12-05  33853.55  32719.85  32947.64
+    ## 2018-09-11  34322.39  32991.54  32879.03
 
 ``` r
 total_wealth = sum(holdings)
 total_wealth
 ```
 
-    ## [1] 99521.04
+    ## [1] 100193
 
 ``` r
 # Now simulate many different possible futures
@@ -622,26 +622,26 @@ head(sim1)
 ```
 
     ##               [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-    ## result.1  99564.56  99088.97  98801.15  98983.75  99440.91 100860.85 101000.33
-    ## result.2  98708.55  99606.32  98347.64  98720.50  98555.19  97981.76  98708.98
-    ## result.3 100521.32 100867.51 101010.66 101402.00 101254.04 101016.35 101568.74
-    ## result.4 100184.95 100036.92  98908.92  98260.03  99901.86 100628.60 100657.64
-    ## result.5 101176.12 101769.26 101819.50 102135.98 102799.97 103734.27 103186.99
-    ## result.6  99813.10  97696.84  98216.18  99360.36  97655.56  97543.21  98504.21
+    ## result.1 105313.40 106193.43 106412.77 106800.24 107688.16 107846.30 109300.22
+    ## result.2  99722.41  99780.44  99924.73  99528.57  99200.19 101559.54 102088.58
+    ## result.3 100723.37 101272.25 101084.51 101347.74 101417.21 100504.73 100333.31
+    ## result.4 100056.94 108586.71 109185.69 107017.46 106806.97 105871.20 105686.42
+    ## result.5  99601.66 100149.08 102247.63 103502.24 103889.21 103931.19 105852.47
+    ## result.6 100269.18 100764.78 101041.68 100764.78 100874.00  98266.15  98687.55
     ##               [,8]      [,9]     [,10]     [,11]     [,12]     [,13]     [,14]
-    ## result.1 100673.25 100260.13 100243.27 100821.90 100578.30 100077.41 101326.44
-    ## result.2  99337.50  99753.83  99619.13  98514.03  99083.16  96858.35  96604.74
-    ## result.3 102194.16 101229.58 100163.64  98590.81  99112.92  99591.34 100012.51
-    ## result.4 100749.50 101561.61 102258.75 104405.06 103780.54 105111.32 105766.19
-    ## result.5 103333.33 106189.83 105809.64 106504.94 107275.43 108254.33 108038.44
-    ## result.6  99730.61 100264.69  99347.10  99756.70 100531.03 100712.82 100474.51
+    ## result.1 110168.23 109376.07 108938.36 108360.59 105974.50 104370.19 103635.10
+    ## result.2 102169.91 100447.32 100915.44 103089.93 103843.30 104362.19 104465.24
+    ## result.3  99856.16 100288.15  99156.63  98926.48  98693.72  96377.04  96522.01
+    ## result.4 105839.14 106911.52 106067.74 106805.77 107522.40 105450.55 105474.25
+    ## result.5 106142.38 105734.91 105558.08 105721.78 104949.09 107154.93 107437.34
+    ## result.6  99510.22  99680.66 100644.88  99568.36  99477.84  99022.62  99798.15
     ##              [,15]     [,16]     [,17]     [,18]     [,19]     [,20]
-    ## result.1 102203.87 102741.17 103209.01 103845.12 104742.53 105049.03
-    ## result.2  96457.58  97089.54  96373.29  96504.69  96281.45  97314.16
-    ## result.3  99539.33  99961.75  96609.69  96203.82  96994.27  97662.78
-    ## result.4 106930.86 107853.86 108970.31 109172.37 109992.80 116055.56
-    ## result.5 108423.56 108364.63 109051.79 108834.73 109106.11 110561.83
-    ## result.6  99418.10 100015.74  98026.17  97821.31  95530.91  94323.79
+    ## result.1 103535.87 103922.86 104365.26 105090.94 105540.79 106730.58
+    ## result.2 103963.43 104178.78 102567.97 104230.08 104449.83 105250.10
+    ## result.3  96259.44  96589.85  96731.19  97101.20  97192.37  97189.16
+    ## result.4 105434.55 101992.83 101178.92 101889.98 102185.08 103414.77
+    ## result.5 107724.83 107152.67 107255.37 106982.00 106405.68 105629.47
+    ## result.6 100433.60  99886.42  98386.87  97921.91  96897.47  96575.05
 
 ``` r
 hist(sim1[,n_days], 25)
@@ -654,13 +654,13 @@ hist(sim1[,n_days], 25)
 mean(sim1[,n_days])
 ```
 
-    ## [1] 100346.2
+    ## [1] 100414
 
 ``` r
 mean(sim1[,n_days] - initial_wealth)
 ```
 
-    ## [1] 346.208
+    ## [1] 413.9872
 
 ``` r
 hist(sim1[,n_days]- initial_wealth, breaks=30)
@@ -674,7 +674,7 @@ quantile(sim1[,n_days]- initial_wealth, prob=0.05)
 ```
 
     ##        5% 
-    ## -8318.032
+    ## -8582.143
 
 Portfolio 1 is a small and homogeneous portfolio containng : XLE - an
 energy ETF, XLI - an industrial ETF, XXP - a consumer staples ETF. We
@@ -704,58 +704,58 @@ for(ticker in mystocks) {
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/VWO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/VWO?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/VWO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/GCX?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/GCX?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/GCX?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/GCX?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/GCX?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/EZU?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+    
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/EZU?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/EZU?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/EWJ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/EWJ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/EWZ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
     
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/EWJ?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/EWZ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/EWZ?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
 ``` r
 # Combine all the returns in a matrix
@@ -787,14 +787,14 @@ holdings
 ```
 
     ##            ClCl.VWOa ClCl.GCXa ClCl.EZUa ClCl.EWJa ClCl.EWZa
-    ## 2014-03-25  20311.17  22857.14  20263.22  20091.58  20246.68
+    ## 2017-01-09  19967.33     20000  19943.07  20019.82  19994.26
 
 ``` r
 total_wealth = sum(holdings)
 total_wealth
 ```
 
-    ## [1] 103769.8
+    ## [1] 99924.47
 
 ``` r
 # Now simulate many different possible futures
@@ -820,26 +820,26 @@ head(sim1)
 ```
 
     ##               [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-    ## result.1 100772.21 100728.78  98368.68  97454.63  97650.99  98269.60  96286.55
-    ## result.2 100508.78 100118.70 100476.69 100882.97 100575.47 101117.24 100611.22
-    ## result.3 100060.58  97453.31  96046.88  95107.38  94620.59  94924.67  96295.37
-    ## result.4 100649.34 117790.18 116113.73 116372.86 115479.64 114925.70 114272.07
-    ## result.5  99952.66 100414.54  96343.39  95658.84  96026.79  96221.35  95804.70
-    ## result.6 101091.72 100287.60 101483.65 101852.61 100861.51 101497.88 101557.45
-    ##               [,8]      [,9]     [,10]     [,11]     [,12]     [,13]     [,14]
-    ## result.1  93740.51  93562.50  94212.24  94991.53  94951.43 116635.87 115851.61
-    ## result.2 101161.42 101460.93 100531.31 101288.94 101642.23 100903.19 100705.34
-    ## result.3  96352.37  95442.67  95398.93  95972.79  95459.07  95274.27  95665.59
-    ## result.4 114273.92 114368.01 113767.05 112530.89 111563.30 120019.04 119432.07
-    ## result.5  91998.96  92162.95  90223.18  89898.22  89319.30  88694.30  88859.43
-    ## result.6 100514.91 100327.29  87096.89  86728.94  85440.54  84767.60  85499.25
+    ## result.1 100168.29 100774.12 102234.07 102929.61 101592.58 102053.21 102157.44
+    ## result.2 100811.17 100344.58 100550.82 100755.51  95550.62  95289.20  95678.35
+    ## result.3 100452.94 100542.64 100357.45 101246.10 102180.69 105170.46 104258.77
+    ## result.4  99819.04 100317.22 101000.80 100251.79  99722.30  98018.66  97986.69
+    ## result.5  99414.75  99343.49  99275.05  98891.88  99555.87 100032.99  99355.47
+    ## result.6  99681.04  98985.94 100288.53 101065.41 101091.04 101593.99 101389.33
+    ##               [,8]      [,9]     [,10]     [,11]    [,12]     [,13]     [,14]
+    ## result.1 102858.20 103364.80  96549.38  92607.10 93556.04  92445.43  91653.73
+    ## result.2  95728.41  95013.90  96483.99  95834.51 94594.08  93957.59  91527.28
+    ## result.3 103261.03 104154.38 102824.71 101653.78 99873.60 107033.74 107888.84
+    ## result.4  95694.88  95437.86  95189.11  96295.69 96156.83  96241.74  95661.31
+    ## result.5  99170.81  92833.77  92670.13  92202.16 91825.73  92126.53  93525.72
+    ## result.6 102089.84  95120.41  96009.92  95602.81 98050.14  98384.23  97488.00
     ##              [,15]     [,16]     [,17]     [,18]     [,19]     [,20]
-    ## result.1 115358.74 115306.84 115681.30 115039.73 114848.69 116389.64
-    ## result.2 101556.30 101562.01 101159.13 101381.81 101314.72 101433.10
-    ## result.3  95369.99  93934.17  94191.81  92727.25  92377.28  96562.37
-    ## result.4 119799.39 120015.61 118185.78 117646.98 117946.35 117758.42
-    ## result.5  88969.92  89346.98  88012.17  88517.18  88722.10  89210.42
-    ## result.6  86707.71  88299.66  89269.84  88321.86  88505.28  89001.86
+    ## result.1  91754.66  92709.39  92062.51  90668.96  90963.73  91033.07
+    ## result.2  90347.89  91369.75  91103.79  90813.42  91748.34  91465.54
+    ## result.3 109625.08 109643.86 108950.11 109119.70 109453.77 109883.82
+    ## result.4  95056.13  82288.30  81849.96  82352.38  82550.97  82894.25
+    ## result.5  93876.46  95308.86  94928.37  94474.64  94681.72  94696.20
+    ## result.6  96872.28 104538.21 104283.97 103870.43 101210.23 101893.42
 
 ``` r
 hist(sim1[,n_days], 25)
@@ -852,13 +852,13 @@ hist(sim1[,n_days], 25)
 mean(sim1[,n_days])
 ```
 
-    ## [1] 102838.3
+    ## [1] 102784.8
 
 ``` r
 mean(sim1[,n_days] - initial_wealth)
 ```
 
-    ## [1] 2838.311
+    ## [1] 2784.819
 
 ``` r
 hist(sim1[,n_days]- initial_wealth, breaks=30)
@@ -871,8 +871,8 @@ hist(sim1[,n_days]- initial_wealth, breaks=30)
 quantile(sim1[,n_days]- initial_wealth, prob=0.05)
 ```
 
-    ##       5% 
-    ## -13346.4
+    ##        5% 
+    ## -12958.92
 
 Portfolio 2 is a globally hedged portfolio, with holdings across
 geographies. VWO is an Asia Pacific ETF, GCX is a China ETF, EZU is an
@@ -910,123 +910,123 @@ for(ticker in mystocks) {
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/SPY?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/SPY?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/SPY?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/SHY?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-    
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/SHY?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/SHY?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/MBB?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
-    
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/MBB?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/USO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=rJBJXHQAHTq'
-
-    ## Warning in read.table(file = file, header = header, sep = sep,
-    ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/USO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/MBB?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/USO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBB?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=rJBJXHQAHTq'
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/USO?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBB?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/USO?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/DBB?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBA?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=rJBJXHQAHTq'
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/DBB?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBA?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBB?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/DBA?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/VNQ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/DBA?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/DBA?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/VNQ?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query2.finance.yahoo.com/v7/finance/download/SH?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/VNQ?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/SH?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
-    ## on 'https://query1.finance.yahoo.com/v7/finance/download/EUO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=rJBJXHQAHTq'
+    ## on 'https://query2.finance.yahoo.com/v7/finance/download/SH?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/EUO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=div&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/EUO?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
+    
+    ## Warning in read.table(file = file, header = header, sep = sep,
+    ## quote = quote, : incomplete final line found by readTableHeader
+    ## on 'https://query1.finance.yahoo.com/v7/finance/download/EUO?
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query2.finance.yahoo.com/v7/finance/download/FGD?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
     ## Warning in read.table(file = file, header = header, sep = sep,
     ## quote = quote, : incomplete final line found by readTableHeader
     ## on 'https://query1.finance.yahoo.com/v7/finance/download/FGD?
-    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=rJBJXHQAHTq'
+    ## period1=-2208988800&period2=1597708800&interval=1d&events=split&crumb=YJOwhJklOH8'
 
 ``` r
 # Combine all the returns in a matrix
@@ -1063,16 +1063,16 @@ holdings
 ```
 
     ##            ClCl.SPYa ClCl.SHYa ClCl.MBBa ClCl.USOa ClCl.DBBa ClCl.DBAa
-    ## 2017-04-12  9956.181   10007.1  10018.72  9946.284  9924.195  9969.636
+    ## 2015-07-24   9896.28  10002.36  10001.83  9931.847  10029.18  9845.735
     ##            ClCl.VNQa ClCl.SHa ClCl.EUOa ClCl.FGDa
-    ## 2017-04-12  9982.271 10046.26   9895.21     10000
+    ## 2015-07-24  10042.45 10100.58  10027.57  9892.517
 
 ``` r
 total_wealth = sum(holdings)
 total_wealth
 ```
 
-    ## [1] 99745.85
+    ## [1] 99770.34
 
 ``` r
 # Now simulate many different possible futures
@@ -1098,26 +1098,26 @@ head(sim1)
 ```
 
     ##               [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-    ## result.1  99879.92  91934.25  92113.98  91852.34  92062.83  92164.94  92081.43
-    ## result.2 100211.30 100198.52  99854.67  99804.82  99977.55  99466.86  99246.82
-    ## result.3  99963.06 100195.82 100216.47 100950.76 100992.28 101029.43 100873.58
-    ## result.4  99914.85 100044.69 100317.74 100786.34 100868.53 100750.21  99904.93
-    ## result.5  99979.79  99829.50 100097.46  99366.97  99372.25  99287.37  99409.25
-    ## result.6 100429.69 100394.08 100027.32  99857.79 100135.57 100206.90 100712.46
+    ## result.1 100786.85 100052.92 100075.28  99748.37  99049.43  98931.73  99001.04
+    ## result.2  99968.27 100689.94 100855.00 101658.17 102147.11 101722.37 102005.19
+    ## result.3 100134.44 100060.79 100149.50  99429.16  99666.78  99389.00 100165.00
+    ## result.4 100229.43  99815.10  99773.72  99931.03  99629.31  99666.02  99570.72
+    ## result.5  99736.85  99332.63  99009.19  99056.97  99342.20  99004.28  98425.77
+    ## result.6 100208.49 100208.66 100238.39 100386.65 100264.20  99873.06  99787.47
     ##               [,8]      [,9]     [,10]     [,11]     [,12]     [,13]     [,14]
-    ## result.1  91606.82  91138.11  91267.96  90763.31  90206.56  90294.99  89473.27
-    ## result.2  99822.02  99196.61  99151.87  98612.47  99002.34  99175.65  99135.65
-    ## result.3 100661.10 101017.38 101463.80 101217.66 101122.56 101127.16 101511.89
-    ## result.4  99921.24  99849.28 100001.72  99727.61 100045.94  99813.36  99468.07
-    ## result.5  99879.78  99096.91  98728.13  98414.48  97924.93  98159.52  97840.53
-    ## result.6 101079.85 101045.33 101104.31 101010.72 100933.27 100665.51 100812.91
-    ##              [,15]     [,16]     [,17]     [,18]     [,19]     [,20]
-    ## result.1  89368.89  89195.26  89305.51  89553.97  89595.79  89531.04
-    ## result.2  98976.98  98803.43  98737.44  98437.58  98318.28  97080.01
-    ## result.3 101830.30 101413.77 101516.38 101104.27 100860.90 100876.48
-    ## result.4  99731.21  99874.79  99227.72  99357.80  99326.23  99077.17
-    ## result.5  97190.97  97021.71  96998.82  97199.16  97313.60  97129.24
-    ## result.6 101088.40 100987.98 101137.57 100436.75 100555.35 100645.42
+    ## result.1  98600.16  98790.15  98872.91  98828.39  98806.94  98569.39  99617.74
+    ## result.2 101851.97 101751.64 100399.63 100244.26 100666.42 100589.52 100660.84
+    ## result.3 100643.97 100722.49 100840.24 100383.57  99975.11 100130.89 100095.04
+    ## result.4  99734.85  99976.63 100026.12 100350.49  99684.58  99901.27  99767.51
+    ## result.5  99464.26  99556.20 100067.59 100043.60  99993.81  99709.86  99983.55
+    ## result.6  99672.22  99944.99  99878.20 100515.64 100675.61 100846.34 100750.33
+    ##              [,15]     [,16]     [,17]    [,18]     [,19]     [,20]
+    ## result.1  99455.28 100740.59 100680.35 100626.0 100511.26 100610.12
+    ## result.2  99744.21 100384.70 100503.85 100670.9  99776.97  99897.42
+    ## result.3  99786.55 102227.83 102316.77 102973.5 103025.62 103375.86
+    ## result.4  99484.81  99938.21  99742.15 100074.2 100352.34  99963.22
+    ## result.5 100009.96 100241.30 100378.82 100896.6 101068.26 101554.19
+    ## result.6 100224.76 101240.99 101279.34 102187.1 102378.84 102255.81
 
 ``` r
 hist(sim1[,n_days], 25)
@@ -1130,13 +1130,13 @@ hist(sim1[,n_days], 25)
 mean(sim1[,n_days])
 ```
 
-    ## [1] 99757.67
+    ## [1] 99772.92
 
 ``` r
 mean(sim1[,n_days] - initial_wealth)
 ```
 
-    ## [1] -242.3315
+    ## [1] -227.0793
 
 ``` r
 hist(sim1[,n_days]- initial_wealth, breaks=30)
@@ -1150,7 +1150,7 @@ quantile(sim1[,n_days]- initial_wealth, prob=0.05)
 ```
 
     ##        5% 
-    ## -4520.873
+    ## -4425.311
 
 This is an aggressive portolio with multiple ETF’s across bonds, large
 caps, mid caps, commodities, inverse equities, leveraged currencies and
@@ -1164,7 +1164,7 @@ highest frequency of returns to be positive, though by a slight margin.
 Also, it is worthwhile to note here that there is a long tail of very
 negative returns (high risk).
 
-\#Problem 4
+# Problem 4
 
 The goal of this report is to help NutrientH2O find market segments that
 may be of interest. For the purposes of this goal, k-means clustering
@@ -1197,6 +1197,8 @@ once clusters were made.
 In order to create the model, a number had to be chosen for the k. The
 Gap statistic method was first used for this purpose. The plot from the
 gap statistic method is shown:
+
+<img src="hw_2_v1_files/figure-gfm/gap-1.png" style="display: block; margin: auto;" />
 
 As can be seen, no clear dip could be observed. So, it was decided after
 several trials that a k value of 7 would be chosen. This was based on
@@ -1533,7 +1535,7 @@ grocery_rules <- apriori(grocery_list, parameter = list(support = 0.006, confide
     ## Absolute minimum support count: 59 
     ## 
     ## set item appearances ...[0 item(s)] done [0.00s].
-    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
+    ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
     ## sorting and recoding items ... [109 item(s)] done [0.00s].
     ## creating transaction tree ... done [0.00s].
     ## checking subsets of size 1 2 3 4 done [0.00s].
